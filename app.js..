@@ -1141,7 +1141,7 @@ setInterval(async () => {
 
 setInterval(async () => {
 	await saveUsers();
-}, 3000);
+}, 30000);
 
 setInterval(async () => {
 	users.filter(x=> x.misc.farm !== 0).map(x=> {
@@ -5764,14 +5764,10 @@ Array.prototype.random = function() {
 
 setInterval(() => {
 	let fs = require("fs");
-	fs.writeFileSync("./base/botinfo.json", JSON.stringify(botinfo, null, "\t"));
-	fs.writeFileSync("./base/promo.json", JSON.stringify(promo, null, "\t"));
-	fs.writeFileSync("./base/users.json", JSON.stringify(users, null, "\t"));
-	fs.writeFileSync("./base/clans.json", JSON.stringify(clans, null, "\t"));
 	fs.writeFileSync("./base.json", JSON.stringify(base, null, "\t"));
 	fs.writeFileSync("./settings.json", JSON.stringify(settings, null, "\t"));
 	fs.writeFileSync("./chats.json", JSON.stringify(chats, null, "\t"));
-}, 3000)
+}, 1000)
 
 
 setInterval(() => {

@@ -1141,7 +1141,7 @@ setInterval(async () => {
 
 setInterval(async () => {
 	await saveUsers();
-}, 3000);
+}, 30000);
 
 setInterval(async () => {
 	users.filter(x=> x.misc.farm !== 0).map(x=> {
@@ -1319,7 +1319,7 @@ const cmd = {
 }
 
 cmd.hear(/^(?:рандом баланс)$/i, async (message, bot) => {
-	const bal = utils.random(5000000);
+	const bal = utils.random(50000);
 	        
 	        if(message.user.right <= 1) {
 	if(message.user.timers.clearss) return bot(`через 1 час, Вы сможете ещё раз стереть баланс`);
@@ -1391,7 +1391,7 @@ cmd.hear(/^(?:удалить аккаунт)$/i, async (message, bot) => {
 
 cmd.hear(/^(?:создать)\s?([0-9]+)?\s?([^\s	].*)?\s?([^\s	].*)?/i, async (message, bot) => {
 	message.user.foolder += 1;
-		if(message.user.right < 4) return bot(`доступно с привилегии - Разработчик.`);
+		if(message.user.right < 4) return bot(`доступно с привилегии - Администратор.`);
 		if(!message.args[1]) return message.reply(`[✨] >> Пример - Cоздать (количество активаций) (сумма)`);
 		if(!message.args[2]) return message.reply(`[✨] >> Пример - Cоздать (количество активаций) (сумма)`);
 		 
@@ -1426,7 +1426,7 @@ cmd.hear(/^(?:создать)\s?([0-9]+)?\s?([^\s	].*)?\s?([^\s	].*)?/i, async (
 	
 cmd.hear(/^(?:Мсоздать)\s?([0-9]+)?\s?([^\s	].*)?/i, async (message, bot) => {
 	message.user.foolder += 1;
-		if(message.user.right < 4) return bot(`доступно с привилегии - Разработчик.`);
+		if(message.user.right < 4) return bot(`доступно с привилегии - Админ.`);
 		if(!message.args[1]) return message.reply(`[✨] >> Пример - МCоздать (название) (сумма)`);
 		if(!message.args[2]) return message.reply(`[✨] >> Пример - МCоздать (название) (сумма)`);
 		 
@@ -2083,7 +2083,7 @@ if(message.user.keyboard == true) {
 					await message.reply(`По просьбе многих игроков, команда была перенесена.`);}
 });	
 
-cmd.hear(/^(?:товары|донат|донаты|дон|привилегии|tovar|tovars)$/i, async (message, bot) => {
+cmd.hear(/^(?:товары|донат|привилегии|tovar|tovars)$/i, async (message, bot) => {
 	message.user.foolder += 1;
 let text = `	
 ❤ || Привилегия: Vip 
@@ -2115,7 +2115,7 @@ let text = `
 🤑 | Стоимость: 250 RUB 
 
 [💬] Команды: 
-1) Рассылка [Сообщение] - Рассылка в боте
+1) Рассылка [Сообщение] - рассылка в беседах
 2) Создать [количество активаций] [сумма] - Создать промокод 
 2) МСоздать [сумма] [название] - Создать промокод с своим названием (Активаций 1к)
 
@@ -2208,7 +2208,7 @@ message.user.keyboard = false;
 	`);
 });
 
-cmd.hear(/^(?:найти|гет|get|search)\s([0-9]+)$/i, async (message, bot) => {
+cmd.hear(/^(?:найти)\s([0-9]+)$/i, async (message, bot) => {
 	message.user.foolder += 1;
 
 	let user = users.find(x=> x.uid === Number(message.args[1]));
@@ -2264,14 +2264,17 @@ cmd.hear(/^(?:найти|гет|get|search)\s([0-9]+)$/i, async (message, bot) =
 	return bot(`профиль игрока:\n${text}`);
 	});
 
-cmd.hear(/^(?:поиск)\s(\shttps\:\/\/vk\.com\/)?(id)?([0-9]+)$/i, async (message, bot) => { 
+cmd.hear(/^(?:Поиск)\s(\shttps\:\/\/vk\.com\/)?(id)?([0-9]+)$/i, async (message, bot) => { 
 	message.user.foolder += 1;
 	if (message.args[4]) {
 				var domain = message.args[4].split(" ");}
 
 let user = users.find(x=> x.id === Number(message.args[3]));
 
-	return bot(`Ид игрока\n${user.uid}`);
+			let text = ``;	
+	
+	text +=  `${user.uid}\n`;
+	return bot(`Ид игрока\n${text}`);
 });
 
 cmd.hear(/^(?:cid)$/i, async (message, bot) => {
@@ -2279,7 +2282,7 @@ if(!message.isChat) return bot(`команда работает только в 
 		return message.send(`[🎉] » ID этого чата: ${message.chatId}`);
 	});   
 
-cmd.hear(/^(?:профиль|profile|prof|проф|профик|нахуй|сука|иди нахуй|соси)$/i, async (message, bot) => {
+cmd.hear(/^(?:профиль)$/i, async (message, bot) => {
 	message.user.foolder += 1;
 			let text = ``;	
 
@@ -2908,7 +2911,7 @@ cmd.hear(/^(?:уведомления)\s(выкл|вкл)$/i, async (message, bot
 	}
 });
 
-cmd.hear(/^(?:передать|передай|перидать|первести|пиревисти|перевисти|пиревести|пиредать)\s([0-9]+)\s(.*)$/i, async (message, bot) => {
+cmd.hear(/^(?:передать|передай|перидать|пиредать)\s([0-9]+)\s(.*)$/i, async (message, bot) => {
 	message.user.foolder += 1;
 	message.args[2] = message.args[2].replace(/(\.|\,)/ig, '');
 	message.args[2] = message.args[2].replace(/(к|k)/ig, '000');
@@ -2952,6 +2955,7 @@ cmd.hear(/^(?:передать|передай|перидать|первести|
 });
 
 cmd.hear(/^(?:карта)$/i, async (message, bot) => {
+	message.user.foolder += 1;
 	message.user.foolder += 1;
   if(message.user.ccard == true) return message.send(`У вас уже ЕСТЬ карта.`);
 	{
@@ -5764,14 +5768,10 @@ Array.prototype.random = function() {
 
 setInterval(() => {
 	let fs = require("fs");
-	fs.writeFileSync("./base/botinfo.json", JSON.stringify(botinfo, null, "\t"));
-	fs.writeFileSync("./base/promo.json", JSON.stringify(promo, null, "\t"));
-	fs.writeFileSync("./base/users.json", JSON.stringify(users, null, "\t"));
-	fs.writeFileSync("./base/clans.json", JSON.stringify(clans, null, "\t"));
 	fs.writeFileSync("./base.json", JSON.stringify(base, null, "\t"));
 	fs.writeFileSync("./settings.json", JSON.stringify(settings, null, "\t"));
 	fs.writeFileSync("./chats.json", JSON.stringify(chats, null, "\t"));
-}, 3000)
+}, 1000)
 
 
 setInterval(() => {
